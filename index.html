@@ -3,26 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Neon Bubble Shooter</title>
+    <title>Neon Bubble Shooter — Coco Games</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <canvas id="gameCanvas"></canvas>
-        <div id="ui-layer">
-            <div id="header">
-                <div class="score-container">SCORE <span id="score">0</span></div>
+    <div id="app-shell">
+        <header id="header">
+            <div class="header-left">
+                <a href="https://cocogames.org" class="pill-btn nav-link" title="Back to Coco Games">← Coco Games</a>
             </div>
-            
-            <div id="game-over" class="hidden glass-panel">
-                <h1 id="game-over-title">GAME OVER</h1>
-                <p id="game-over-score">Final Score: <span id="final-score-val">0</span></p>
-                <button id="restart-btn">PLAY AGAIN</button>
+
+            <div class="header-stats">
+                <div class="stat-pill">
+                    <span class="stat-label">LVL</span>
+                    <span id="level-display" class="stat-val accent-purple">1/3</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">SCORE</span>
+                    <span id="score" class="stat-val accent-cyan">0</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">BEST</span>
+                    <span id="best-score" class="stat-val accent-gold">0</span>
+                </div>
             </div>
-        </div>
+
+            <div class="header-controls">
+                <select id="difficulty-select" class="pill-select" aria-label="Difficulty">
+                    <option value="easy" selected>Easy</option>
+                    <option value="classic">Classic</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button id="symbols-btn" class="pill-btn icon-btn" title="Toggle Colorblind Symbols" aria-label="Toggle Symbols">★</button>
+                <button id="mute-btn" class="pill-btn icon-btn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
+                <button id="reset-btn" class="pill-btn icon-btn" title="Restart Game" aria-label="Restart">↻</button>
+            </div>
+        </header>
+
+        <main id="stage-wrap">
+            <div id="canvas-frame">
+                <canvas id="gameCanvas"></canvas>
+
+                <div id="game-over" class="hidden glass-panel" role="dialog" aria-modal="true">
+                    <div id="modal-badge" class="modal-badge">LEVEL 1 — NEON WAVE</div>
+                    <h1 id="game-over-title">GAME OVER</h1>
+                    <p id="modal-subtitle" class="modal-subtitle"></p>
+                    <p id="game-over-score">
+                        Score: <span id="final-score-val">0</span>
+                        <span class="score-sep">•</span>
+                        Best: <span id="final-best-val">0</span>
+                    </p>
+                    <div class="modal-actions">
+                        <button id="next-level-btn" class="action-btn btn-next hidden">NEXT LEVEL →</button>
+                        <button id="restart-btn" class="action-btn btn-primary">PLAY AGAIN</button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
